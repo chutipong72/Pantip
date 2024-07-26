@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orders</title>
+    <style>
+      dialog {
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+      }
+      table {
+        width: 30%;
+      }
+      a {
+        cursor: pointer;
+        padding-left: 5px;
+        padding-top: 0px;
+      }
+      td {
+        display: flex;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Order List Dialox Box</h1>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% orders.forEach(order => { %>
+        <tr>
+          <td>
+            Order ID :
+            <a
+              href="#"
+              class="order-id"
+              data-order="<%= JSON.stringify(order) %>"
+              ><%= order.order_id %></a
+            >
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+    <dialog id="order-dialog">
+      <form method="dialog">
+        <h2>Order Details</h2>
+        <p><strong>Order ID:</strong> <span id="dialog-order-id"></span></p>
+        <p><strong>Room Type:</strong> <span id="dialog-room-type"></span></p>
+        <p>
+          <strong>Check-in Date:</strong>
+          <span id="dialog-check-in-date"></span>
+        </p>
+        <p>
+          <strong>Check-out Date:</strong>
+          <span id="dialog-check-out-date"></span>
+        </p>
+        <p>
+          <strong>Total Price:</strong> <span id="dialog-total-price"></span>
+        </p>
+        <p>
+          <strong>Customer Name:</strong>
+          <span id="dialog-customer-name"></span>
+        </p>
+        <p>
+          <strong>Customer Email:</strong>
+          <span id="dialog-customer-email"></span>
+        </p>
+        <button type="submit">Close</button>
+      </form>
+    </dialog>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const dialog = document.getElementById("order-dialog");
+
+        document.querySelectorAll(".order-id").forEach((orderIdLink) => {
+          orderIdLink.addEventListener("click", (event) => {
+            event.preventDefault();
+            const order = JSON.parse(orderIdLink.dataset.order);
+
+            document.getElementById("dialog-order-id").innerText =
+              order.order_id;
+            document.getElementById("dialog-room-type").innerText =
+              order.room_type;
+            document.getElementById("dialog-check-in-date").innerText =
+              new Date(order.check_in_date).toISOString().split("T")[0];
+            document.getElementById("dialog-check-out-date").innerText =
+              new Date(order.check_out_date).toISOString().split("T")[0];
+            document.getElementById("dialog-total-price").innerText =
+              order.total_price;
+            document.getElementById("dialog-customer-name").innerText =
+              order.customer_id.customer_name;
+            document.getElementById("dialog-customer-email").innerText =
+              order.customer_id.email;
+
+            dialog.showModal();
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

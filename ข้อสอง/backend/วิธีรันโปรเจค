@@ -1,0 +1,9 @@
+ขั้นตอนแรกเปิด terminal แล้วพิมพ์
+npm install
+
+ข้อ 2.สำหรับการแปลงโค้ดมาเป็น nodeJS
+พิมพ์    node fetchOrders.js     ใน terminal
+
+ข้อ 3. สำหรับหน้าเว็บเพื่อเปิด dialox box แสดงข้อมูล order
+พิมพ์   node server.js     ใน terminal
+แล้วเข้าที่    http://localhost:4000    ครับ

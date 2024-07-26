@@ -1,0 +1,11 @@
+สำหรับฝั่ง backend
+ขั้นตอนแรกเปิด terminal แล้วพิมพ์
+cd backend
+npm install
+node index.js
+
+สำหรับฝั่ง frontend
+ขั้นตอนแรกเปิด terminal แล้วพิมพ์
+cd frontend
+npm install
+npm start
